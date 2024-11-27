@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['role'] === 'Admin') {
                 header("Location: admin_dashboard.php");
             } elseif ($user['role'] === 'Employer') {
-                header("Location: employer_dashboard.php");
+                header("Location: pages/employer/dashboard.php");
             } else {
                 header("Location: employee_dashboard.php");
             }
