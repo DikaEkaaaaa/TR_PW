@@ -2,13 +2,11 @@
 session_start();
 require '../../db.php';
 
-// Periksa apakah user memiliki role employer
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Employer') {
     header("Location: login.php");
     exit();
 }
 
-// Ambil pekerjaan yang dibuat oleh employer
 $created_by = $_SESSION['user_id'];
 $stmt = $conn->prepare("SELECT * FROM tb_jobs WHERE created_by = ?");
 $stmt->bind_param("i", $created_by);
@@ -27,13 +25,11 @@ $result = $stmt->get_result();
     <div class="container mt-5">
         <h1 class="text-center mb-4">Employer Dashboard</h1>
         
-        <!-- Tambah Lowongan -->
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title">Create Job</h2>
-                <form action="create_job.php" method="POST">
-                    <!-- Form Fields -->
-                    <!-- (Sama seperti sebelumnya, tidak diubah) -->
+                <form action="add.php" method="POST">
+                    <button type="submit" class="btn btn-primary w-100">Add Job</button>
                 </form>
             </div>
         </div>

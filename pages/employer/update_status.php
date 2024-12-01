@@ -8,7 +8,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Employer') {
     exit();
 }
 
-// Update status pendaftar
 $applicant_id = $_GET['id'] ?? 0;
 $status = $_GET['status'] ?? '';
 
