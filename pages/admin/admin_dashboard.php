@@ -103,6 +103,7 @@ $history_result = $history_stmt->get_result();
                                     <td>
                                         <a href="edit_job.php?id=<?= $job['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="delete_job.php?id=<?= $job['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                        <a href="view_applicants.php?job_id=<?= $job['id'] ?>" class="btn btn-info btn-sm">View Applicants</a>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
