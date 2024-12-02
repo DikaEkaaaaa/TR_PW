@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../../components/logout_button.php';
 require '../../db.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Employer') {

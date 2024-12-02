@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif ($user['role'] === 'Employer') {
                 header("Location: pages/employer/dashboard.php");
             } else {
-                header("Location: employee_dashboard.php");
+                header("Location: pages/employee/index.php");
             }
             exit();
         } else {
