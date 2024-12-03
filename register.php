@@ -8,8 +8,10 @@
     <style>
         /* Custom background styling */
         body {
-            background: linear-gradient(120deg, #2b5876, #4e4376);
+            /* background: linear-gradient(120deg, #2b5876, #4e4376); */
+            background-color: #2b5876;
             height: 100vh;
+            padding: 10px;
         }
 
         .register-card {
@@ -19,7 +21,7 @@
             padding: 40px;
             background-color: #ffffff;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease-in-out;
         }
 
@@ -31,7 +33,7 @@
         .register-card h1 {
             font-size: 2rem;
             font-weight: bold;
-            color: #333;
+            color: #4e4376;
         }
 
         .register-card .form-label {
@@ -52,24 +54,48 @@
             background-color: #218838;
         }
 
-        .register-card .btn-link {
+        .register-card .btn-link-custom {
             text-align: center;
-            font-size: 1rem;
             color: #777;
         }
 
-        .register-card .btn-link:hover {
-            color: #28a745;
+        .register-card .btn-link-custom:hover {
+            color: #4e4376;
+            text-decoration: underline;
         }
 
         .register-card .form-control {
             border-radius: 25px;
-            padding: 20px;
+            padding: 10px 0px 10px 20px;
+            font-size: 1rem;
         }
 
         .register-card .form-control:focus {
-            box-shadow: 0 0 8px rgba(72, 107, 204, 0.6);
-            border-color: #28a745;
+            box-shadow: 0px 0px 10px rgba(72, 107, 204, 0.4);
+            /* border-color: #4e4376; */
+            border-color: rgba(72, 107, 204, 0.6);
+        }
+
+        .register-card .form-select {
+            border-radius: 25px;
+            padding: 10px 0px 10px 20px;
+            font-size: 1rem;
+        }
+
+        .register-card .form-select:focus {
+            box-shadow: 0px 0px 10px rgba(72, 107, 204, 0.4);
+            /* border-color: #4e4376; */
+            border-color: rgba(72, 107, 204, 0.6);
+        }
+
+        .btn-submit {
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            background-color: #4e4376 !important;
+            font-weight: bold;
+            padding: 10px;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -94,8 +120,10 @@
                         <option value="Employee">Employee</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success w-100">Register</button>
-                <a href="login.php" class="btn btn-link w-100 mt-3">Already have an account? Login</a>
+                <div class="mt-4">
+                    <button type="submit" class="fw-semibold btn btn-primary btn-submit w-100">Register</button>
+                    <a href="login.php" class="btn btn-link-custom fs-6 fw-normal w-100 mt-3">Already have an account? Login</a>
+                </div>
             </form>
         </div>
     </div>
