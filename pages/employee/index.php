@@ -36,6 +36,7 @@ $result = $conn->query($query);
             justify-content: start;
             align-items: center;
             padding: 0px 20px;
+            border-bottom-right-radius: 100px;
             border-bottom: 3px solid #333;
         }
 
