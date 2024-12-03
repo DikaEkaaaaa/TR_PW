@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2024 at 03:25 AM
+-- Generation Time: Dec 03, 2024 at 05:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,9 @@ CREATE TABLE `tb_applications` (
 INSERT INTO `tb_applications` (`id`, `user_id`, `job_id`, `status`, `applied_at`) VALUES
 (13, 15, 14, 'Rejected', '2024-12-02 13:49:31'),
 (15, 15, 16, 'Accepted', '2024-12-02 14:43:51'),
-(16, 18, 18, 'Accepted', '2024-12-03 01:20:46');
+(16, 18, 18, 'Accepted', '2024-12-03 01:20:46'),
+(17, 15, 18, 'Accepted', '2024-12-03 08:47:21'),
+(18, 15, 21, 'Pending', '2024-12-03 16:16:07');
 
 -- --------------------------------------------------------
 
@@ -76,7 +78,8 @@ INSERT INTO `tb_jobs` (`id`, `title`, `description`, `requirements`, `employment
 (17, 'Karyawan Teknisi', 'Memperbaiki permasalahan teknis dalam kantor', 'Pengalaman 3 tahun\r\nUmur 18 tahun', 'full-time', '2000000', 'PT PENCARI CINTA SEJATI', 'Salatiga', '2024-12-03 01:16:22', '2024-12-03 01:16:22', 17, NULL, 'active'),
 (18, 'Sekertaris Direktur', 'Menyiapkan Rapat dan Meeting dan lain-lain', 'Lulusan Akademis Sekertari\r\nTOEFL 500', 'intern', '1500000', 'Kantor Laboran FTI', 'Salatiga', '2024-12-03 01:18:19', '2024-12-03 01:18:19', 17, NULL, 'active'),
 (19, 'asd', 'asd', 'ads', 'intern', '2000000', 'asd', 'ads', '2024-12-03 02:00:09', '2024-12-03 02:00:09', 0, NULL, 'active'),
-(20, 'asda', 'dsad', 'asda', 'intern', '12', 'asd', 'asd', '2024-12-03 02:03:50', '2024-12-03 02:03:50', 9, NULL, 'active');
+(20, 'asda', 'dsad', 'asda', 'intern', '12', 'asd', 'asd', '2024-12-03 02:03:50', '2024-12-03 02:03:50', 9, NULL, 'active'),
+(21, 'DADADA', 'DADADA', 'DADADA', 'full-time', '1500000', 'DADADA', 'DADADA', '2024-12-03 16:15:40', '2024-12-03 16:15:40', 10, NULL, 'active');
 
 -- --------------------------------------------------------
 
@@ -125,7 +128,7 @@ CREATE TABLE `tb_profiles` (
 
 INSERT INTO `tb_profiles` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `address`, `experience`, `skills`, `created_at`, `updated_at`) VALUES
 (1, 11, 'Budiono Siregar', 'kapallawd@gmail.com', '088899994444', 'PC aja', 'Iso Renang Kedalaman 5meter', 'Iso renang masseh', '2024-12-02 04:10:26', '2024-12-02 04:13:49'),
-(4, 15, 'Dikaeka', 'aemlnx18@gmail.com', '088899994444', 'v', 'vv', 'v', '2024-12-02 13:45:31', '2024-12-02 13:45:31'),
+(4, 15, 'Dikaeka', 'aemlnx18@gmail.com', '088899994444', 'Dsn. Krandon Rt 04 Rw 01, Desa Kalijambe, Kecamatan Bringin, Kab.Semarang', 'Lomba Makan Kerupuk', 'Makan Banyak', '2024-12-02 13:45:31', '2024-12-03 15:50:52'),
 (5, 18, 'Budiono Siregar', 'test@test.com', '088899994444', 'Blotongan, Salatiga', 'Pernah menjadi sekertaris RT', 'Mengetik Sebelas Jari', '2024-12-03 01:20:36', '2024-12-03 01:20:36');
 
 -- --------------------------------------------------------
@@ -202,13 +205,13 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT for table `tb_applications`
 --
 ALTER TABLE `tb_applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_jobs`
 --
 ALTER TABLE `tb_jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tb_job_history`
