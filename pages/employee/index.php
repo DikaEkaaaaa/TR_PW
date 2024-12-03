@@ -146,7 +146,8 @@ $result = $conn->query($query);
         <div>
 
             <?php if (isset($_SESSION['user_id'])): ?>
-                <h4>Hello, <?= $_SESSION['nama'] ?></h4>
+                <h4 class="m-0">Hello, <?= $_SESSION['nama'] ?></h4>
+                <p class="m-0 fs-6 mb-3" style="color: rgba(225,225,225,0.7);max-width:500px;">Find thousands of the latest and most complete job vacancies. Find your dream job now!</p>
                 <a href="profile.php" class="btn btn-primary">View Profile</a>
             <?php else: ?>
                 <a href="login.php" class="btn btn-primary">Login to Apply</a>
@@ -203,21 +204,7 @@ $result = $conn->query($query);
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="card job-list shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($row['title']) ?></h5>
-                                <p class="card-text"><strong>Company:</strong> <?= htmlspecialchars($row['company_name']) ?></p>
-                                <p class="card-text"><strong>Location:</strong> <?= htmlspecialchars($row['location']) ?></p>
-                                <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($row['employment_type']) ?></p>
-                                <p class="card-text"><strong>Salary:</strong> <?= htmlspecialchars($row['salary_range']) ?></p>
-
-                                <?php if (isset($_SESSION['user_id'])): ?>
-                                    <a href="view_application_detail.php?job_id=<?= $row['id'] ?>" class="btn btn-info">View Detail</a>
-                                <?php else: ?>
-                                    <a href="login.php" class="btn btn-primary">Login to Apply</a>
-                                <?php endif; ?>
-                            </div>
-                        </div> -->
+                        
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
