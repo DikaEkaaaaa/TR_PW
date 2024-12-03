@@ -21,6 +21,7 @@ $result = $conn->query($query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,11 @@ $result = $conn->query($query);
         .header-section {
             background: linear-gradient(90deg, #1e3c72, #2a5298);
             color: white;
-            padding: 40px 0;
+            min-height: 200px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            padding: 0px 20px;
             border-bottom: 3px solid #333;
         }
 
@@ -65,13 +70,16 @@ $result = $conn->query($query);
             font-size: 1rem;
         }
 
-        .btn-primary, .btn-info {
-            width: 30%;
+        .btn-primary,
+        .btn-info {
+            border-radius: 25px;
+            padding: 5px 20px;
+            /* width: 30%; */
         }
 
         .filter-section {
-            margin: 40px 40px;
-            padding: 0 15px;
+            /* margin: 40px 40px; */
+            padding: 20px 20px;
         }
 
         .footer {
@@ -80,23 +88,74 @@ $result = $conn->query($query);
             text-align: center;
             margin-top: 40px;
         }
+
+        .card-job {
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 10px 10px 10px 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+
+        .container-job-kapsul {
+            display: flex;
+            /* flex-wrap: wrap; */
+            /* gap: 10px; */
+        }
+
+        .job-kapsul {
+            font-size: .7rem;
+            padding-left: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 10px;
+            border-radius: 8px;
+            margin: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .job-kapsul:hover {
+            background-color: #4e4376;
+            color: white;
+        }
+
+        .btn-custom-apply {
+            background-color: #4e4376;
+            color: white;
+            font-size: .8rem;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+
+        .btn-custom-apply:hover {
+            background-color: #0056b3;
+            color: white;
+        }
     </style>
 </head>
+
 <body>
-    <div class="container-fluid text-center header-section">
-        <h1>Welcome to Job Portal</h1>
-        <p>Find Your Dream Job</p>
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <h4>Welcome, <?= $_SESSION['nama'] ?></h4>
-            <a href="profile.php" class="btn btn-light mt-3">View Profile</a>
-        <?php else: ?>
-            <a href="login.php" class="btn btn-primary">Login to Apply</a>
-        <?php endif; ?>
+    <div class="container-fluid header-section">
+        <div>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <h4>Hello, <?= $_SESSION['nama'] ?></h4>
+                <a href="profile.php" class="btn btn-primary">View Profile</a>
+            <?php else: ?>
+                <a href="login.php" class="btn btn-primary">Login to Apply</a>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="container filter-section">
         <form method="GET" action="">
-            <div class="row">
+            <div class="row gap-2">
                 <div class="col-md-3">
                     <select name="employment_type" class="form-select">
                         <option value="">All Jobs</option>
@@ -125,7 +184,25 @@ $result = $conn->query($query);
                     ?>
 
                     <div class="col">
-                        <div class="card job-list shadow-sm">
+                        <div class="">
+                            <div class="card-job">
+                                <div class="mb-3">
+                                    <h5 style="margin:0;text-transform: uppercase;" class="mt-2"><?= htmlspecialchars($row['title']) ?></h5>
+                                    <p style="margin:0;color: rgba(0,0,0,0.5);font-size:.8rem;" class="fw-semibold"><?= htmlspecialchars($row['company_name']) ?></p>
+                                    <div class="mt-5 container-job-kapsul justify-content-between">
+                                        <p class="job-kapsul">Location: <?= htmlspecialchars($row['location']) ?></p>
+                                        <p class="job-kapsul">Type: <?= htmlspecialchars($row['employment_type']) ?></p>
+                                        <p class="job-kapsul">Salary: Rp. <?= htmlspecialchars(number_format($row['salary_range'])) ?></p>
+                                    </div>
+                                    <?php if (isset($_SESSION['user_id'])): ?>
+                                        <a href="view_application_detail.php?job_id=<?= $row['id'] ?>" class="mt-2 btn btn-custom-apply mt-3">View Detail</a>
+                                    <?php else: ?>
+                                        <a href="login.php" class="mt-2 btn btn-custom-apply mt-3">Login to Apply</a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="card job-list shadow-sm">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($row['title']) ?></h5>
                                 <p class="card-text"><strong>Company:</strong> <?= htmlspecialchars($row['company_name']) ?></p>
@@ -139,7 +216,7 @@ $result = $conn->query($query);
                                     <a href="login.php" class="btn btn-primary">Login to Apply</a>
                                 <?php endif; ?>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
@@ -153,4 +230,5 @@ $result = $conn->query($query);
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
