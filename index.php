@@ -12,6 +12,7 @@ $result = $conn->query($query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,56 +24,94 @@ $result = $conn->query($query);
         .header {
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 10px 50px;
+            justify-content: start;
             align-items: center;
-            text-align: center;
+            text-align: left;
             color: #fff;
-            background: url('src/photos/background.jpg') no-repeat center center fixed;
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+                url('src/photos/background.jpg') no-repeat center center;
+            /* background: url('src/photos/background.jpg') no-repeat center center; */
             background-size: cover;
         }
+
+        .header div {
+            max-width: 600px;
+        }
+
         .header h1 {
             font-size: 3rem;
         }
+
         .btn-custom {
-            background-color: #007bff;
+            background-color: #4e4376;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             padding: 10px 20px;
-            border-radius: 5px;
+            width: 250px;
+            border-radius: 25px;
             text-decoration: none;
         }
+
         .btn-custom:hover {
             background-color: #0056b3;
         }
 
         /* Job List Section */
         .job-section {
-            background-color: #f8f9fa; /* Soft gray background */
+            background-color: #f8f9fa;
+            /* Soft gray background */
             padding: 50px 20px;
         }
+
         .job-list {
-            background-color: #fff; /* White card background */
+            background-color: #fff;
+            /* White card background */
             padding: 20px;
             border-radius: 10px;
         }
+
         .job-list .card {
-            border: none; /* Remove card border */
+            border: none;
+            /* Remove card border */
             margin-bottom: 20px;
             transition: transform 0.2s;
         }
+
         .job-list .card:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+            transform: translateY(-5px);
+            /* Slight lift on hover */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                url('src/photos/background.jpg') no-repeat center center;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .header p {
+                color: rgba(225, 225, 225, 0.8);
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header Section -->
     <div class="header">
-        <h1>Welcome to Job Portal</h1>
-        <p>Find Your Dream Job</p>
-        <a href="login.php" class="btn btn-custom">Login to Apply</a>
+        <div>
+            <h1>Unlock Your Future with Our Job Portal</h1>
+            <p>Explore countless opportunities and land the career you’ve always dreamed of—tailored to your skills and passions!</p>
+            <a href="login.php" class="btn btn-custom">Log in to Get Started!</a>
+        </div>
     </div>
 
     <!-- Job List Section -->
@@ -105,4 +144,5 @@ $result = $conn->query($query);
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
