@@ -18,7 +18,7 @@ if ($job_id == 0) {
 
 // Query untuk mengambil daftar pelamar berdasarkan job_id
 $stmt = $conn->prepare("
-    SELECT a.id AS applicant_id, p.full_name AS applicant_name, p.email AS applicant_email, a.status, a.applied_at
+    SELECT a.id AS applicant_id, p.full_name AS applicant_name, p.email AS applicant_email, p.experience AS experience, p.skills AS skills, a.status, a.applied_at
     FROM tb_applications a
     JOIN tb_profiles p ON a.user_id = p.user_id
     WHERE a.job_id = ?
@@ -47,6 +47,8 @@ $result = $stmt->get_result();
                     <th>Email</th>
                     <th>Status</th>
                     <th>Applied At</th>
+                    <th>Experiences</th>
+                    <th>Skills</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -58,6 +60,8 @@ $result = $stmt->get_result();
                         <td><?= htmlspecialchars($applicant['applicant_email']) ?></td>
                         <td><?= htmlspecialchars($applicant['status']) ?></td>
                         <td><?= $applicant['applied_at'] ?></td>
+                        <td><?= htmlspecialchars($applicant['experience']) ?></td>
+                        <td><?= htmlspecialchars($applicant['skills']) ?></td>
                         <td>
                             <a href="update_status.php?id=<?= $applicant['applicant_id'] ?>&status=Accepted" class="btn btn-success btn-sm">Accept</a>
                             <a href="update_status.php?id=<?= $applicant['applicant_id'] ?>&status=Rejected" class="btn btn-danger btn-sm">Reject</a>

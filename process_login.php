@@ -3,10 +3,16 @@ session_start();
 require 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama = trim($_POST['nama']);
+    $nama = trim(htmlspecialchars($_POST['nama'])); // Filter input
     $password = trim($_POST['password']);
 
-    // Gunakan prepared statement
+    // Periksa apakah input kosong
+    if (empty($nama) || empty($password)) {
+        echo "<script>alert('Nama dan password harus diisi!'); window.location.href = 'login.php';</script>";
+        exit();
+    }
+
+    // Gunakan prepared statement untuk keamanan
     $stmt = $conn->prepare("SELECT id, nama, password, role FROM tb_users WHERE nama = ?");
     $stmt->bind_param("s", $nama);
     $stmt->execute();
@@ -31,11 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: pages/employee/index.php");
             }
             exit();
-        } else {
-            echo "<script>alert('Password salah!'); window.location.href = 'login.php';</script>";
         }
-    } else {
-        echo "<script>alert('Nama tidak ditemukan!'); window.location.href = 'login.php';</script>";
     }
+
+    // Pesan kesalahan generik
+    echo "<script>alert('Nama pengguna atau password salah!'); window.location.href = 'login.php';</script>";
 }
 ?>

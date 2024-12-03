@@ -3,21 +3,30 @@ session_start();
 include '../../components/logout_button.php';
 require '../../db.php';
 
-// Periksa apakah user sudah login dan memiliki role Admin
+// Cek apakah user adalah admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
     header("Location: ../../login.php");
     exit();
 }
 
-// Ambil semua lowongan pekerjaan dari database
-$stmt = $conn->prepare("SELECT * FROM tb_jobs ORDER BY created_at DESC");
+// Ambil ID admin yang sedang login
+$admin_id = $_SESSION['user_id'];
+
+// Ambil pekerjaan yang hanya dibuat oleh admin ini
+$stmt = $conn->prepare("SELECT * FROM tb_jobs WHERE created_by = ? ORDER BY created_at DESC");
+$stmt->bind_param("i", $admin_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$history_stmt = $conn->prepare("SELECT h.job_id, h.title, h.status, h.updated_at, h.updated_by 
-                                FROM tb_job_history h 
-                                JOIN tb_jobs j ON h.job_id = j.id 
-                                ORDER BY h.updated_at DESC");
+// Ambil riwayat pekerjaan untuk pekerjaan yang dibuat oleh admin ini
+$history_stmt = $conn->prepare("
+    SELECT h.job_id, h.title, h.status, h.updated_at, h.updated_by 
+    FROM tb_job_history h 
+    JOIN tb_jobs j ON h.job_id = j.id 
+    WHERE j.created_by = ? 
+    ORDER BY h.updated_at DESC
+");
+$history_stmt->bind_param("i", $admin_id);
 $history_stmt->execute();
 $history_result = $history_stmt->get_result();
 ?>
@@ -115,6 +124,7 @@ $history_result = $history_stmt->get_result();
             </div>
         </div>
 
+        <!-- Riwayat Lowongan -->
         <div class="card mt-4">
             <div class="card-body">
                 <h2 class="card-title">Job History</h2>
@@ -146,7 +156,6 @@ $history_result = $history_stmt->get_result();
                 <?php endif; ?>
             </div>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

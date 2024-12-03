@@ -124,6 +124,14 @@ $salary_formatted = "Rp " . number_format($salary, 0, ',', '.');
                             <p class="detail-value"><?= $salary_formatted ?></p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="detail-label">Requirements:</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="detail-value"><?= htmlspecialchars($job['requirements'])?></p>
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <h5>Description:</h5>
@@ -131,7 +139,7 @@ $salary_formatted = "Rp " . number_format($salary, 0, ',', '.');
 
                 <!-- Status Aplikasi -->
                 <div class="mb-3">
-                    <h5>Status: <?= $app_status['status'] ?? 'No application found' ?></h5>
+                    <h5 class="detail-value">Status: <?= $app_status['status'] ?? 'No application found' ?></h5>
                 </div>
 
                 <div class="btn-container">
